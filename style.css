@@ -1,14 +1,24 @@
-h1 {
+#grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  place-items: center;
+}
+
+.header {
   font-size: 3rem;
+  grid-column: 1 / -1;
 }
 
 #game-board {
   display: grid;
+  
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
   width: 300px;
   height: 300px;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
+  grid-column: 2 / -2;
 }
 
 #game-board > div {
@@ -21,10 +31,19 @@ h1 {
   border: 1px solid black;
 }
 
+#game-info {
+  grid-column: 3 / -3;
+}
+
 #start-btn,
-#reset-btn {
+#reset-btn,
+#change-name {
   padding: 10px 20px;
   font-size: 16px;
   font-weight: bold;
   cursor: pointer;
+}
+
+#menu-buttons {
+  grid-column: 4 / -4;
 }

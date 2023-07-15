@@ -36,9 +36,11 @@ const displayController = (() => {
   const cells = [];
 
   const startGame = () => {
+    const currentPlayer = game.getCurrentPlayer();
     if(!gameOn) {
       gameOn = true;
-      gameInfo.innerHTML = `<h2>Game has started!</h2>`
+      gameInfo.innerHTML = `<h2>Game has started!</h2>
+                            <h2>Player turn: ${currentPlayer.getName()}</h2>`
     }
   }
 
@@ -69,6 +71,9 @@ const displayController = (() => {
       renderBoard();
       if (game.checkGameStatus() === 'ongoing') {
         game.switchTurn();
+        // console.log(currentPlayer.getName());
+        // gameInfo.innerHTML = `<h2>Game has started!</h2>
+        //                       <h2>Player turn: ${currentPlayer.getName()}</h2>`
       } else {
         endGame();
       }
@@ -84,8 +89,7 @@ const displayController = (() => {
       message = "It's a tie!";
     }
     gameOn = false;
-    // alert(message);
-    gameInfo.innerHTML = `<h2>${message} Press the start button to start another game.</h2>`
+    gameInfo.innerHTML = `<h2>${message} Press start to start another game.</h2>`
     reset();
   };
 
@@ -99,19 +103,22 @@ const displayController = (() => {
 
   resetButton.addEventListener('click', reset);
 
-  return { renderBoard };
+  return { gameInfo, renderBoard };
 })();
 
 // Game module
 const game = (() => {
-  let currentPlayer;
   const player1 = createPlayer('Player 1', 'X');
   const player2 = createPlayer('Player 2', 'O');
+
+  let currentPlayer = player1;
 
   const getCurrentPlayer = () => currentPlayer;
 
   const switchTurn = () => {
     currentPlayer = currentPlayer === player1 ? player2 : player1;
+    displayController.gameInfo.innerHTML = `<h2>Game has started!</h2>
+                                            <h2>Player turn: ${currentPlayer.getName()}</h2>`
   };
 
   const checkGameStatus = () => {
@@ -135,8 +142,6 @@ const game = (() => {
 
     return 'ongoing'; // Game is not over
   };
-
-  currentPlayer = player1; // Player 1 starts first
 
   return { getCurrentPlayer, switchTurn, checkGameStatus };
 })();
