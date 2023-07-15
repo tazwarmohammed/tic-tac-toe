@@ -29,8 +29,18 @@ const createPlayer = (name, mark) => {
 // Display controller module
 const displayController = (() => {
   const gameBoardContainer = document.getElementById('game-board');
-  const restartButton = document.getElementById('restart-btn');
+  const startButton = document.getElementById('start-btn');
+  const resetButton = document.getElementById('reset-btn');
+  const gameInfo = document.getElementById('game-info');
+  let gameOn = false;
   const cells = [];
+
+  const startGame = () => {
+    if(!gameOn) {
+      gameOn = true;
+      gameInfo.innerHTML = `<h2>Game has started!</h2>`
+    }
+  }
 
   const renderBoard = () => {
     const board = gameBoard.getBoard();
@@ -42,7 +52,9 @@ const displayController = (() => {
       cells.push(cell);
 
       cell.addEventListener('click', () => {
-        playTurn(i);
+        if(gameOn) {
+          playTurn(i);
+        }
       });
 
       gameBoardContainer.appendChild(cell);
@@ -71,17 +83,21 @@ const displayController = (() => {
     } else if(game.checkGameStatus() === 'tie') {
       message = "It's a tie!";
     }
-    alert(message);
-    restart();
+    gameOn = false;
+    // alert(message);
+    gameInfo.innerHTML = `<h2>${message} Press the start button to start another game.</h2>`
+    reset();
   };
 
-  const restart = () => {
+  const reset = () => {
     gameBoard.resetBoard();
     cells.length = 0;
     renderBoard();
   };
 
-  restartButton.addEventListener('click', restart);
+  startButton.addEventListener('click', startGame);
+
+  resetButton.addEventListener('click', reset);
 
   return { renderBoard };
 })();
