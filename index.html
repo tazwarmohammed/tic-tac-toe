@@ -15,10 +15,24 @@
       </div>
       <div id="menu-btn">
         <button id="start-btn">Start</button>
-        <!-- <button id="reset-btn">Reset</button> -->
         <button id="change-name">Change names</button>
       </div>
     </div>
+    <dialog id="form-container">
+      <form onsubmit="changeNames()" method="dialog">
+        <legend>PLAYER NAME CHANGE</legend>
+        <section>
+          <label for="player1">Player 1 Name:</label>
+          <input type="text" id="player1" name="player1" required><br>
+          <label for="player2">Player 2 Name:</label>
+          <input type="text" id="player2" name="player2" required><br>
+        </section>
+        <section>
+          <button type="submit">OK</button>
+          <button type="button" class="form-cancel">CANCEL</button>
+        </section>
+      </form>
+    </dialog>
   </body>
   <script src="script.js"></script>
 </html>
