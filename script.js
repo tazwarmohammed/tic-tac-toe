@@ -39,8 +39,8 @@ const displayController = (() => {
     const currentPlayer = game.getCurrentPlayer();
     if(!gameOn) {
       gameOn = true;
-      gameInfo.innerHTML = `<h2>Game has started!</h2>
-                            <h2>Player turn: ${currentPlayer.getName()}</h2>`
+      gameInfo.innerHTML = `<h3>Game has started!</h3>
+                            <h3>Player turn: ${currentPlayer.getName()}</h3>`
     }
   }
 
@@ -72,8 +72,8 @@ const displayController = (() => {
       if (game.checkGameStatus() === 'ongoing') {
         game.switchTurn();
         // console.log(currentPlayer.getName());
-        // gameInfo.innerHTML = `<h2>Game has started!</h2>
-        //                       <h2>Player turn: ${currentPlayer.getName()}</h2>`
+        // gameInfo.innerHTML = `<h3>Game has started!</h3>
+        //                       <h3>Player turn: ${currentPlayer.getName()}</h3>`
       } else {
         endGame();
       }
@@ -89,7 +89,7 @@ const displayController = (() => {
       message = "It's a tie!";
     }
     gameOn = false;
-    gameInfo.innerHTML = `<h2>${message} Press start to start another game.</h2>`
+    gameInfo.innerHTML = `<h3>${message} Press start to start another game.</h3>`
     reset();
   };
 
@@ -117,8 +117,8 @@ const game = (() => {
 
   const switchTurn = () => {
     currentPlayer = currentPlayer === player1 ? player2 : player1;
-    displayController.gameInfo.innerHTML = `<h2>Game has started!</h2>
-                                            <h2>Player turn: ${currentPlayer.getName()}</h2>`
+    displayController.gameInfo.innerHTML = `<h3>Game has started!</h3>
+                                            <h3>Player turn: ${currentPlayer.getName()}</h3>`
   };
 
   const checkGameStatus = () => {
