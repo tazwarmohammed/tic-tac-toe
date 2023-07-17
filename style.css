@@ -14,7 +14,7 @@ body {
   justify-content: center;
   align-items: stretch;
   height: 100%;
-  background-color: #c9c9c9;
+  background-color: #d3d3d3;
 }
 
 #grid-container {
@@ -55,7 +55,7 @@ body {
 #menu-btn button {
   padding: 10px 20px;
   margin: 0 1rem 1rem 1rem;
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: bold;
   cursor: pointer;
 }
@@ -96,7 +96,7 @@ form button {
 
 form button:hover {
   cursor: pointer;
-  background-color: #dadada;
+  background-color: #d3d3d3;
 }
 
 #form-container {

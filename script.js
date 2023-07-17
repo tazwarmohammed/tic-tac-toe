@@ -134,9 +134,7 @@ const displayController = (() => {
     formContainer.close();
   });
 
-  form.addEventListener('submit', changeNames);
-
-  return { gameInfo, renderBoard };
+  return { gameInfo, renderBoard, changeNames };
 })();
 
 // Game module
