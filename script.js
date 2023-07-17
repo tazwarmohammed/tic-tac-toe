@@ -30,7 +30,6 @@ const createPlayer = (name, mark) => {
 const displayController = (() => {
   const gameBoardContainer = document.getElementById('game-board');
   const startButton = document.getElementById('start-btn');
-  const resetButton = document.getElementById('reset-btn');
   const gameInfo = document.getElementById('game-info');
   let gameOn = false;
   const cells = [];
@@ -38,6 +37,8 @@ const displayController = (() => {
   const startGame = () => {
     const currentPlayer = game.getCurrentPlayer();
     if(!gameOn) {
+      reset();
+      startButton.disabled = true;
       gameOn = true;
       gameInfo.innerHTML = `<h3>Game has started!</h3>
                             <h3>Player turn: ${currentPlayer.getName()}</h3>`
@@ -71,9 +72,6 @@ const displayController = (() => {
       renderBoard();
       if (game.checkGameStatus() === 'ongoing') {
         game.switchTurn();
-        // console.log(currentPlayer.getName());
-        // gameInfo.innerHTML = `<h3>Game has started!</h3>
-        //                       <h3>Player turn: ${currentPlayer.getName()}</h3>`
       } else {
         endGame();
       }
@@ -89,19 +87,17 @@ const displayController = (() => {
       message = "It's a tie!";
     }
     gameOn = false;
-    gameInfo.innerHTML = `<h3>${message} Press start to start another game.</h3>`
-    reset();
+    startButton.disabled = false;
+    gameInfo.innerHTML = `<h3>${message} Press start to play again.</h3>`
   };
 
   const reset = () => {
-    gameBoard.resetBoard();
-    cells.length = 0;
-    renderBoard();
+      gameBoard.resetBoard();
+      cells.length = 0;
+      renderBoard();
   };
 
   startButton.addEventListener('click', startGame);
-
-  resetButton.addEventListener('click', reset);
 
   return { gameInfo, renderBoard };
 })();

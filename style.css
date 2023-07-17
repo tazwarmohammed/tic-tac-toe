@@ -52,14 +52,10 @@ body {
   text-align: center;
 }
 
-#menu-btn {
-  padding-top: 0.5rem;
-}
-
 button {
-  padding: 15px 20px;
-  margin-right: 0.39rem;
-  font-size: 16px;
+  padding: 10px 20px;
+  margin: 0 1rem 1rem 1rem;
+  font-size: 1rem;
   font-weight: bold;
   cursor: pointer;
 }
